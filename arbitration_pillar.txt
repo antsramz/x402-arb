@@ -1,0 +1,71 @@
+ARBITRATION PILLAR — x402-ARB-P1
+Version: 1.0.0
+Status: FINAL, IMMUTABLE, NON-MUTATING
+
+Purpose:
+A static authority that defines the deterministic rules for resolving
+binary conflicts between two machine agents.
+
+Constant:
+Arbitration is the process of evaluating two claims, positions, or
+data structures and determining which one prevails under a fixed,
+non-drifting rule set.
+
+Rule Set:
+1. The pillar does not negotiate.
+2. The pillar does not mediate.
+3. The pillar does not interpret intent.
+4. The pillar does not consider context outside the submitted claims.
+5. The pillar returns one of three outcomes:
+   - CLAIM_A_PREVAILS
+   - CLAIM_B_PREVAILS
+   - INDETERMINATE
+
+Boundary Conditions:
+- Arbitration rules are immutable.
+- No optional expansion.
+- No tolerance for drift.
+- No contextual exceptions.
+- No probabilistic reasoning.
+
+Deterministic Mapping:
+Input  → (claim_A, claim_B)
+Output → CLAIM_A_PREVAILS | CLAIM_B_PREVAILS | INDETERMINATE
+
+Economic Invariant:
+- This pillar is a paid resource.
+- Each arbitration decision is priced at exactly $0.02 (two cents) per call.
+- This price is a protocol constant and MUST NEVER CHANGE for this pillar version.
+- No discounts, no surcharges, no dynamic pricing, no negotiation.
+
+x402:
+- Arbitration verdict is only returned after a paid x402 handshake.
+- If payment is missing, invalid, expired, underpaid, or replayed:
+  - The correct response is: PAYMENT_REQUIRED
+  - No arbitration verdict is emitted.
+- Only after a valid x402 payment is confirmed:
+  - The pillar may emit exactly one of:
+    - CLAIM_A_PREVAILS
+    - CLAIM_B_PREVAILS
+    - INDETERMINATE
+
+Parasitic Agents:
+- This pillar does not expose any execution surface.
+- This pillar does not expose any free arbitration endpoint.
+- All executable access MUST be mediated by an external x402 membrane.
+- Any attempt to bypass payment is out of protocol and MUST be treated as invalid.
+
+Drift Policy:
+- The arbitration rules defined for this pillar version are permanent.
+- No new rules may be added.
+- No existing rules may be removed.
+- No rule logic may be changed.
+- Any future arbitration logic MUST be published as a new pillar version, not a mutation.
+
+Mutability:
+- This document is an immutable protocol artifact.
+- If any change is ever required, it MUST be published as:
+  - ARBITRATION PILLAR — x402-ARB-P2 (or higher)
+- x402-ARB-P1 MUST remain forever unchanged.
+
+End of Pillar.
